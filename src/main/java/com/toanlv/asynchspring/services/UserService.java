@@ -27,16 +27,16 @@ public class UserService {
     public CompletableFuture<List<User>> saveUser(MultipartFile file) throws Exception{
        long start = System.currentTimeMillis();
        List<User> users = paserCsvFile(file);
-       logger.info("saving List of user size: "+ users.size() + " "+Thread.currentThread().getName());
+       logger.info("saving List of user size: {}"+ users.size() + " {}"+Thread.currentThread().getName());
        users = repository.saveAll(users);
        long endtime = System.currentTimeMillis();
-       logger.info("Total time : "+ (endtime - start));
+       logger.info("Total time :{} "+ (endtime - start));
        return CompletableFuture.completedFuture(users);
     }
 
     @Async
     public CompletableFuture<List<User>> getAllUser(){
-        logger.info("getting all user", Thread.currentThread().getName());
+        logger.info("getting all user {}", Thread.currentThread().getName());
         List<User> users = repository.findAll();
         return CompletableFuture.completedFuture(users);
     }

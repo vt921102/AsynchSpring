@@ -27,7 +27,7 @@ public class UserService {
     public CompletableFuture<List<User>> saveUser(MultipartFile file) throws Exception{
        long start = System.currentTimeMillis();
        List<User> users = paserCsvFile(file);
-       logger.info("saving List of user size: {}"+ users.size() + " {}"+Thread.currentThread().getName());
+       logger.info("Saving List of user size: {}"+ users.size() + " {}"+Thread.currentThread().getName());
        users = repository.saveAll(users);
        long endtime = System.currentTimeMillis();
        logger.info("Total time :{} "+ (endtime - start));
@@ -36,7 +36,7 @@ public class UserService {
 
     @Async
     public CompletableFuture<List<User>> getAllUser(){
-        logger.info("getting all user {}", Thread.currentThread().getName());
+        logger.info("Getting all user {}", Thread.currentThread().getName());
         List<User> users = repository.findAll();
         return CompletableFuture.completedFuture(users);
     }
@@ -60,7 +60,7 @@ public class UserService {
          return users;
      } catch (Exception e){
         logger.error(" Error convert file");
-        throw new Exception("Fail to pase CSV file");
+        throw new Exception("Fail to parse CSV file");
      }
     }
 }
